@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="card-body">
-            <h6 class="card-category text-gray"><% if (currentUser.isAdmin == false) { %>Ambassador <% } else { %>Admin<% } %></h6>
+            <h6 class="card-category text-gray"><% if (currentUser.isAdmin == false) { %>User <% } else { %>Admin<% } %></h6>
             <h4 class="card-title"><%= currentUser.name %></h4>
             <p class="card-description">
                 <% if (currentUser.name == "Jay Sinha") {%> Your kickass IT guy!<% } else if (currentUser.isAdmin == false) { %>Congrats, you are an Ambassador with Inversion <% } else { %> Someone whose words are to be taken seriosuly! <% } %>
