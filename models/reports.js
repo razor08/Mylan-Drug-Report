@@ -117,6 +117,9 @@ var reportsModel = new mongoose.Schema({
     deathDate: {
         type :String,
     },
+    otherInfo: {
+        type: String
+    }
 });
 
 
