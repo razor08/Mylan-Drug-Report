@@ -1,6 +1,5 @@
 <% include partials/header %>
-<div class="ui inverted vertical masthead center aligned segment">
-
+<div class="ui inverted vertical center segment">
     <div class="ui container">
         <div class="ui tiny secondary inverted pointing menu">
             <a class="toc item">
@@ -16,16 +15,17 @@
             </div>
         </div>
     </div>
-
-    <div class="ui text container">
-        <h1 class="ui inverted header">
-            Mylan Drug Report
-        </h1>
-        <h2>The one-stop platform to manage Drug Adverse Effect Reports</h2>
-        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
-    </div>
-
 </div>
+<h2 class="ui center aligned icon header">
+    <i class="circular users icon"></i>
+    Friends
+    <p>Bacon ipsum dolor amet pork chop jowl meatloaf, burgdoggen ham hock kevin pork belly brisket shankle chuck shank. Doner flank pork chop tongue, hamburger shoulder brisket andouille pancetta picanha leberkas. Capicola kevin drumstick short ribs, venison short loin biltong ground round flank shankle. Jowl turducken meatloaf sirloin, prosciutto rump turkey short loin strip steak ham. Pastrami drumstick ground round bacon.</p>
+
+    <p>Drumstick brisket landjaeger, beef alcatra cupim biltong filet mignon bacon t-bone. Fatback ground round shoulder tail pork loin, cupim capicola ribeye frankfurter bacon pork belly turkey rump swine andouille. Kielbasa cow sausage turkey buffalo pork. Shank landjaeger leberkas pig filet mignon. Filet mignon shankle sirloin bacon porchetta prosciutto. Tail drumstick rump beef. Cow prosciutto kielbasa bacon burgdoggen alcatra swine fatback sausage venison.</p>
+
+        <p>Brisket shankle andouille strip steak, pancetta chicken turkey. Strip steak bacon porchetta, picanha salami burgdoggen tongue. Cupim drumstick capicola prosciutto porchetta alcatra, picanha venison shank buffalo. Swine short ribs corned beef, bresaola meatball frankfurter pastrami sirloin chicken flank biltong. Strip steak beef brisket, tongue meatloaf beef ribs alcatra burgdoggen kielbasa pancetta t-bone shoulder rump salami boudin.</p>
+</h2>
+<br>
 <div class="ui container">
 <form class="ui form" action="/login" method="POST">
     <div class="field">
@@ -33,7 +33,7 @@
         <input type="email" name="username" placeholder="Enter your Email" required>
     </div>
     <div class="field">
-        <label>Passwords</label>
+        <label>Password</label>
         <input type="password" name="password" placeholder="Enter your password" required>
     </div>
     <button class="ui button" type="submit">Submit</button>
@@ -41,10 +41,10 @@
     <div class="ui horizontal divider">
         Or
     </div>
-    <div class="ui teal labeled icon button">
-        Create New Order
-        <i class="add icon"></i>
-    </div>
+    <a href="/auth/google"><button class="ui google plus button">
+        <i class="google plus icon"></i>
+        Google Plus
+        </button></a>
 </div>
 
 <br>
