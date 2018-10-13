@@ -1,0 +1,51 @@
+<% include partials/header %>
+<div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui container">
+        <div class="ui tiny secondary inverted pointing menu">
+            <a class="toc item">
+                <i class="sidebar icon"></i>
+            </a>
+            <a class="active item">Home</a>
+            <a class="item">Work</a>
+            <a class="item">Company</a>
+            <a class="item">Careers</a>
+            <div class="right item">
+                <a class="ui inverted button">Log in</a>
+                <a class="ui inverted button">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui text container">
+        <h1 class="ui inverted header">
+            Mylan Drug Report
+        </h1>
+        <h2>The one-stop platform to manage Drug Adverse Effect Reports</h2>
+        <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+    </div>
+
+</div>
+<div class="ui container">
+<form class="ui form" action="/login" method="POST">
+    <div class="field">
+        <label>Email</label>
+        <input type="email" name="username" placeholder="Enter your Email" required>
+    </div>
+    <div class="field">
+        <label>Passwords</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>
+    <div class="ui horizontal divider">
+        Or
+    </div>
+    <div class="ui teal labeled icon button">
+        Create New Order
+        <i class="add icon"></i>
+    </div>
+</div>
+
+<br>
+<% include partials/footer %>
