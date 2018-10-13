@@ -34,11 +34,11 @@
                     <tbody>
                     <% if (reports) { reports.forEach(function(x){  %>
                         <tr>
-                            <td><%= x.fname %></td>
+                            <td><%= x.reporterName %></td>
                             <td><%= x.adob %></td>
                             <td><%= x.rid %></td>
                             <td><%= x.outcomes %></td>
-                            <td><%= x.phone %></td>
+                            <td><%= x.reporterPhone %></td>
                             <td><div class="ui compact menu">
                                     <div class="item">
                                         <i class="icon time"></i> <%= moment(x.dateCreated).format('ll') %>
