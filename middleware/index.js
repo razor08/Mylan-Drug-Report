@@ -13,7 +13,7 @@ middlewareObj.isAdmin = function(req, res, next) {
         if (req.user.isAdmin == true) {
             next();
         } else {
-            res.redirect("/dashboard");
+            res.redirect("/users/show");
         }
     } else {
         res.redirect("/login");

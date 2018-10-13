@@ -7,13 +7,15 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var User = require("./models/users");
 var passport = require('passport');
-var auth = require("./config/auth")
+var auth = require("./config/auth");
 var json2xls = require('json2xls');
 var LocalStrategy           = require("passport-local").Strategy;
 var GoogleStrategy          = require('passport-google-oauth20');
-
+var flash                   = require("connect-flash");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/mylan", { useNewUrlParser: true });
 
 var app = express();
 
@@ -24,11 +26,19 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(cors());
+app.use(flash());
 app.use(json2xls.middleware);
 app.use(logger('dev'));
 app.use(express.json());
+app.use(require("express-session")({
+    secret: 'Bingo',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 6000000
+    }
+}));
 app.use(express.urlencoded({ extended: false }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -111,12 +121,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -136,19 +143,32 @@ app.get('/auth/google', passport.authenticate('google',{
     ]
 }));
 
-app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-    userService.isActiveUser(req.user.uid, function(response){
-        if (response['success'] == false) {
-            console.log(response['message']);
-            res.redirect("/");
-        } else {
-            if (response['user']['active'] == false) {
-                res.redirect("/signup/google");
-            } else {
-                res.redirect("/dashboard");
-            }
+app.post('/signup', (req, res) => {
+    req.body.user['email'] = req.body['username'];
+    req.body.user['username'] = req.body['username'];
+    req.body.user['active'] = true;
+    var u = new User(req.body.user);
+    User.register(new User(u), req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return null;
         }
+        passport.authenticate("local")(req, res, function(){
+            req.flash("success","Succesfully signed up!");
+            res.redirect('/dashboard');
+        });
     });
+});
+
+app.post('/login', passport.authenticate("local",{
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+}), (req, res) => {
+});
+
+app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+    res.redirect('/dashboard');
     // res.send("Poop!");
 });
 

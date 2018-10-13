@@ -39,12 +39,17 @@ var userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         required: true,
-        default: false
+        default: true
     },
     country: {
         type: String,
         required: true,
         default: "India"
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     resetPasswordToken: {
         type: String
