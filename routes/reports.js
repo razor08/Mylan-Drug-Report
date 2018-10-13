@@ -117,8 +117,10 @@ router.get("/api/report/new", function(req, res){
         r['healthProfessional'] = 'Yes';
     }
     r['occupation'] = l[24];
-
-    res.json({success: true, message: 'Data received!', data: r});
+    reports.create(r, function(err, newReport){
+        console.log(newReport);
+        res.json({success: true, message: 'Data received!', data: r});
+    });
 });
 
 router.get("/reports", middleware.isAdmin, function(req, res){

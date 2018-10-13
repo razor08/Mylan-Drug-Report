@@ -1,6 +1,11 @@
 var mongoose = require("mongoose");
-
+var shortid = require("shortid");
 var reportsModel = new mongoose.Schema({
+    rid: {
+        type: String,
+        required: true,
+        default: shortid.generate
+    },
     fname: {
         type: String,
     },
