@@ -52,8 +52,66 @@ var reportsModel = new mongoose.Schema({
     medRouteUsed: {
         type: String,
     },
-
-    
+    tsdate: {
+        type: String,
+    },
+    tedate: {
+        type: String,
+    },
+    diagnosisUse: {
+        type: String,
+    },
+    eventAboted: {
+        type :String,
+    },
+    lot: {
+        type: String,
+    },
+    expDate: {
+        type: String,
+    },
+    eventReappeared: {
+        type: String,
+    },
+    smHerbal: {
+        type: String,
+    },
+    clinicanName: {
+        type: String,
+    },
+    clinicanAddress: {
+        type: String,
+    },
+    clinicanPincode: {
+        type :String,
+    },
+    clinicanSpeciality: {
+        type: String,
+    },
+    clinicanPhone: {
+        type: String,
+    },
+    reporterName: {
+        type: String,
+    },
+    reporterPhone: {
+        type: String,
+    },
+    reportDate: {
+        type: String,
+    },
+    reporterAddress: {
+        type :String,
+    },
+    healthProfessional: {
+        type: String,
+    },
+    occupation: {
+        type: String,
+    },
+    deathDate: {
+        type :String,
+    },
 });
 
 
