@@ -136,8 +136,8 @@ setInterval(function(){
 
         if (err) {
             console.log(err);
-            res.redirect("/reports");
         } else {
+            console.log(bdy);
             var p = '+917892727758';
             var p2 = '+918090167640';
             if (bdy['message'][0]['address'] == p || bdy['message'][0]['address'] == p2) {
