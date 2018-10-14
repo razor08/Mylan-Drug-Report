@@ -129,6 +129,10 @@ function saveMessage(message) {
 
 setInterval(function(){
     request(get, function(err, rsp, bdy){
+        var get = {
+        uri: auth.sync,
+        method: 'GET'
+    };
         if (err) {
             console.log(err);
             res.redirect("/reports");
