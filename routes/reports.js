@@ -149,16 +149,31 @@ setInterval(function(){
     });
 }, 10000);
 
-// router.get("/reports/refresh", middleware.isAdmin ,function(req, res){
-//     // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'
-//     var get = {
-//         uri: auth.sync,
-//         method: 'GET'
-//     };
-//
-//
-//
-// });
+router.get("/reports/refresh", middleware.isAdmin ,function(req, res){
+    // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'
+    var get = {
+        uri: auth.sync,
+        method: 'GET'
+    };
+    request(get, function(err, rsp, bdy){
+
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(rsp);
+            console.log(bdy);
+            var p = '+917892727758';
+            var p2 = '+918090167640';
+            if (bdy['message'][0]['address'] == p || bdy['message'][0]['address'] == p2) {
+                console.log(bdy['messages'][0]['body']);
+                saveMessage(bdy['messages'][0]['body']);
+            }
+        }
+    });
+
+
+
+});
 
 router.post("/api/report/new", function(req, res){
     // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'
