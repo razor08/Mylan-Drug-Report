@@ -15,9 +15,9 @@ router.post('/api/lot/check', function(req, res){
         }
     }
     if (f == 0) {
-        callback({success: true, allow: false});
+        res.json({success: true, allow: false});
     } else {
-        callback({success: true, allow: true});
+        res.json({success: true, allow: true});
     }
 });
 
