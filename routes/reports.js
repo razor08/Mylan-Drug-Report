@@ -4,8 +4,8 @@ var middleware = require("../middleware/index");
 var reports = require("../models/reports");
 var functions = require("../middleware/functions");
 var moment = require("moment");
-router.post("/post", function(req, res){
-    console.log(body);
+router.get("/post", function(req, res){
+    console.log(req.body);
     res.json({success: true, message: 'Message received!'});
 });
 router.get("/api/report/new", function(req, res){
