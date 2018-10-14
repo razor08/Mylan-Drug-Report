@@ -4,16 +4,12 @@ var middleware = require("../middleware/index");
 var reports = require("../models/reports");
 var functions = require("../middleware/functions");
 var moment = require("moment");
-router.get("/post", function(req, res){
-    console.log(req.body);
-    res.json({success: true, message: 'Message received!'});
-});
-router.get("/api/report/new", function(req, res){
-    // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'
-    console.log(req.body);
-    console.log(req.query);
-    var x = req.query.message;
-    if (false) {
+var requesr = require("request");
+var auth = require('../config/auth');
+
+function saveMessage(message) {
+    var x = message;
+
         var l = x.split('|');
         var r = {};
         r['fname'] = l[1];
@@ -127,11 +123,36 @@ router.get("/api/report/new", function(req, res){
         r['occupation'] = l[24];
         reports.create(r, function (err, newReport) {
             console.log(newReport);
-            res.json({success: true, message: 'Data received!', data: r});
+            return newReport;
         });
-    }
-    res.json({success:true});
-});
+}
+
+setInterval(function(){
+    request(get, function(err, rsp, bdy){
+        if (err) {
+            console.log(err);
+            res.redirect("/reports");
+        } else {
+            var p = '+917892727758';
+            var p2 = '+918090167640';
+            if (bdy['message'][0]['address'] == p || bdy['message'][0]['address'] == p2) {
+                console.log(bdy['messages'][0]['body']);
+                saveMessage(bdy['messages'][0]['body']);
+            }
+        }
+    });
+}, 6000);
+
+// router.get("/reports/refresh", middleware.isAdmin ,function(req, res){
+//     // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'
+//     var get = {
+//         uri: auth.sync,
+//         method: 'GET'
+//     };
+//
+//
+//
+// });
 
 router.post("/api/report/new", function(req, res){
     // var x = '|Hemant|Joshi|261298|0|56|12306-200934-somthing fucked|200118|200218|I took Paracetamol and I had drowsy feeling after consuming 500mg of it|||Paracetamol-500-Novartis|2-bid-oral|200118-100218|fever|0|1234-200120|0|I took turmeric with honey||113 MSR_101|010318|0|Student|'

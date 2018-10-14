@@ -6,7 +6,8 @@
 //     },
 //     'sendgrid': {
 //         'apiKey': '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'
-//     }
+//     },
+//     'sync': 'http://10.255.9.76:8080/v1/sms'
 // }
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
     },
     'sendgrid': {
         'apiKey': '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'
-    }
+    },
+    'sync': 'http://10.255.9.76:8080/v1/sms'
 }
