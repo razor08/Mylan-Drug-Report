@@ -146,20 +146,28 @@ app.get('/auth/google', passport.authenticate('google',{
 }));
 
 app.post('/signup', (req, res) => {
-    req.body.user['email'] = req.body['username'];
-    req.body.user['username'] = req.body['username'];
-    req.body.user['active'] = true;
-    var u = new User(req.body.user);
-    User.register(new User(u), req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return null;
+    if (req.isAuthenticated()) {
+        if (req.user.isAdmin == true) {
+            res.redirect("/dashboard");
+        } else {
+            res.redirect("/users/show");
         }
-        passport.authenticate("local")(req, res, function(){
-            req.flash("success","Succesfully signed up!");
-            res.redirect('/dashboard');
+    } else {
+        req.body.user['email'] = req.body['username'];
+        req.body.user['username'] = req.body['username'];
+        req.body.user['active'] = true;
+        var u = new User(req.body.user);
+        User.register(new User(u), req.body.password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return null;
+            }
+            passport.authenticate("local")(req, res, function () {
+                req.flash("success", "Succesfully signed up!");
+                res.redirect('/dashboard');
+            });
         });
-    });
+    }
 });
 
 app.post('/login', passport.authenticate("local",{

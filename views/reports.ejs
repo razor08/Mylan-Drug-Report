@@ -1,0 +1,155 @@
+<% include partials/header %>
+
+<div class="col-lg-6">
+    <div class="card ">
+        <div class="card-header ">
+            <h4 class="card-title"><%= report.rid %> -
+                <small class="description">Report</small>
+            </h4>
+        </div>
+        <div class="card-body ">
+            <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                        Report
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                        Reporter
+                    </a>
+                </li>
+
+            </ul>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active" id="link1">
+                    Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                    <br />
+                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                    <br/>
+                    <br/> This is very nice.
+                    <br />
+                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                    <br/>
+                    <br/> This is very nice.
+                    <br />
+                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                    <br/>
+                    <br/> This is very nice.
+
+                </div>
+                <div class="tab-pane" id="link2">
+                    Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                    <br />
+                    <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-6 col-md-12">
+    <div class="card">
+        <div class="card-header card-header-tabs card-header-rose">
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <span class="nav-tabs-title">Outcomes:</span>
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#profile" data-toggle="tab">
+                                <i class="material-icons">space_bar</i>
+                                <div class="ripple-container">Outcomes</div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#messages" data-toggle="tab">
+                                <i class="material-icons">done</i>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings" data-toggle="tab">
+                                <i class="material-icons">done_all</i> Completed
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                    <p></p>
+                </div>
+                <div class="tab-pane" id="messages">
+                    <p></p>
+                </div>
+                <div class="tab-pane" id="settings">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <ul class="timeline timeline-simple">
+            <li class="timeline-inverted">
+                <div class="timeline-badge danger">
+                    <i class="material-icons">card_travel</i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <span class="badge badge-pill badge-danger">Campaign Created</span>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Industry Type: <%= campaign.industryType %></p>
+                    </div>
+                    <h6>
+                        <i class="ti-time"></i> <%= moment(campaign.dateCreated).format('ll') %>
+                    </h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-lg-6 cards">
+                <div class="card card-pricing card-plain">
+                    <div class="card-body">
+                        <h6 class="card-category">Company - <%= campaign.meant_for %></h6>
+                        <div class="card-icon icon-rose">
+                            <i class="material-icons">home</i>
+                        </div>
+                        <h3 class="card-title">Task Count - <%= campaign.tasks.length %></h3>
+                        <p class="card-description">
+                            Industry Type - <%= campaign.industryType %>
+                        </p>
+                        <a href="/company" class="btn btn-rose btn-round">View Company Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 cards">
+                <div class="card card-pricing card-raised">
+                    <div class="card-body">
+                        <h6 class="card-category">Created By</h6>
+                        <div class="card-icon">
+                            <i class="material-icons">weekend</i>
+                        </div>
+                        <h3 class="card-title"><%= campaign.created_by %></h3>
+                        <p class="card-description">
+                            I'm Admin!
+                        </p>
+                        <a href="#pablo" class="btn btn-white btn-round"><%= moment(campaign.dateCreated).tz('Asia/Kolkata').format('lll')%></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<script>
+    $('#reportsMenu').addClass('active');
+</script>
+<% include partials/footer %>
