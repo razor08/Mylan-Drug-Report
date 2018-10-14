@@ -119,6 +119,9 @@ var reportsModel = new mongoose.Schema({
     },
     otherInfo: {
         type: String
+    },
+    mid: {
+        type: String
     }
 });
 
