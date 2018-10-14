@@ -9,121 +9,124 @@ router.get("/api/report/new", function(req, res){
     console.log(req.body);
     console.log(req.query);
     var x = req.query.message;
-    var l = x.split('|');
-    var r = {};
-    r['fname'] = l[1];
-    r['lname'] = l[2];
-    r['adob'] = l[3];
-    if (l[4] == '0') {
-        r['sex'] = 'Male';
-    } else {
-        r['sex'] = 'Female';
-    }
-    r['weight'] = l[5];
-    var out = l[6].split('-');
-    var o = "";
-    for(var i=0;i<out[0].length;i++) {
-        if (out[0][i] == '0') {
-            o = o + 'Death,';
-        } else if (out[0][i] == '1') {
-            o = o + 'Life Threat,';
-        } else if (out[0][i] == '2') {
-            o = o + 'Hospitalisation,';
-        } else if (out[0][i] == '3') {
-            o = o + 'Disability,';
-        } else if (out[0][i] == '4') {
-            o = o + 'Congenital,';
-        } else if (out[0][i] == '5') {
-            o = o + 'Intervention,';
+    if (false) {
+        var l = x.split('|');
+        var r = {};
+        r['fname'] = l[1];
+        r['lname'] = l[2];
+        r['adob'] = l[3];
+        if (l[4] == '0') {
+            r['sex'] = 'Male';
         } else {
-            o = o + 'Others,';
+            r['sex'] = 'Female';
         }
-    }
-    r['outcomes'] = o;
-    if (!functions.isEmpty(out[1])) {
-        r['deathDate'] = out[1];
-    }
-    if (!functions.isEmpty(out[2])) {
-        r['otherInfo'] = out[2];
-    }
+        r['weight'] = l[5];
+        var out = l[6].split('-');
+        var o = "";
+        for (var i = 0; i < out[0].length; i++) {
+            if (out[0][i] == '0') {
+                o = o + 'Death,';
+            } else if (out[0][i] == '1') {
+                o = o + 'Life Threat,';
+            } else if (out[0][i] == '2') {
+                o = o + 'Hospitalisation,';
+            } else if (out[0][i] == '3') {
+                o = o + 'Disability,';
+            } else if (out[0][i] == '4') {
+                o = o + 'Congenital,';
+            } else if (out[0][i] == '5') {
+                o = o + 'Intervention,';
+            } else {
+                o = o + 'Others,';
+            }
+        }
+        r['outcomes'] = o;
+        if (!functions.isEmpty(out[1])) {
+            r['deathDate'] = out[1];
+        }
+        if (!functions.isEmpty(out[2])) {
+            r['otherInfo'] = out[2];
+        }
 
-    r['dstart'] = l[7];
-    r['dend'] = l[8];
-    r['problem'] =l[9];
-    r['ltest'] = l[10];
-    r['history'] = l[11];
-    if (!functions.isEmpty(l[12])) {
-        var t = l[12].split('-');
-        r['medName'] = t[0];
-        r['medLabel'] = t[1];
-        r['medManufacture'] = t[2];
-        var u = l[13].split('-');
-        r['medDose'] = u[0];
-        r['medFreq'] = u[1];
-        r['medRouteUsed'] = u[2];
-    }
-   if (!functions.isEmpty(l[14])) {
-     var y = l[14].split('-');
-     r['tsdate'] = y[0];
-     r['tedate'] = y[1];
-   }
+        r['dstart'] = l[7];
+        r['dend'] = l[8];
+        r['problem'] = l[9];
+        r['ltest'] = l[10];
+        r['history'] = l[11];
+        if (!functions.isEmpty(l[12])) {
+            var t = l[12].split('-');
+            r['medName'] = t[0];
+            r['medLabel'] = t[1];
+            r['medManufacture'] = t[2];
+            var u = l[13].split('-');
+            r['medDose'] = u[0];
+            r['medFreq'] = u[1];
+            r['medRouteUsed'] = u[2];
+        }
+        if (!functions.isEmpty(l[14])) {
+            var y = l[14].split('-');
+            r['tsdate'] = y[0];
+            r['tedate'] = y[1];
+        }
 
-    r['diagnosisUse'] = l[15];
-    if (l[16]) {
-        if (l[16] == '0') {
-            r['eventAboted'] = 'Yes';
-        } else if (l[16] == '1') {
-            r['eventAboted'] = 'No';
+        r['diagnosisUse'] = l[15];
+        if (l[16]) {
+            if (l[16] == '0') {
+                r['eventAboted'] = 'Yes';
+            } else if (l[16] == '1') {
+                r['eventAboted'] = 'No';
+            } else {
+                r['eventAboted'] = 'NA';
+            }
+        }
+
+        if (!functions.isEmpty(l[17])) {
+            var z = l[17].split('-');
+            r['lot'] = z[0];
+            r['expDate'] = z[1];
+        }
+
+        if (l[18] == '0') {
+            r['eventReappeared'] = 'Yes';
+        } else if (l[18] == '1') {
+            r['eventReappeared'] = 'No';
         } else {
-            r['eventAboted'] = 'NA';
+            r['eventReappeared'] = 'NA';
         }
-    }
 
-    if (!functions.isEmpty(l[17])) {
-        var z = l[17].split('-');
-        r['lot'] = z[0];
-        r['expDate'] = z[1];
-    }
+        r['smHerbal'] = l[19];
+        if (!functions.isEmpty(l[20])) {
+            var ab = l[20].split('_');
+            r['clinicanName'] = ab[0];
+            r['clinicanAddress'] = ab[1];
+            r['clinicanPincode'] = ab[2];
+            r['clinicanPhone'] = ab[3];
+            r['clinicanSpeciality'] = ab[4];
+            r['reporterName'] = l[1] + ' ' + l[2];
+            var ac = l[21].split('_');
+            r['reporterAddress'] = ac[0];
+            r['reporterPhone'] = ac[1];
 
-    if (l[18] == '0') {
-        r['eventReappeared'] = 'Yes';
-    } else if (l[18] == '1') {
-        r['eventReappeared'] = 'No';
-    } else {
-        r['eventReappeared'] = 'NA';
-    }
+        } else {
+            r['reporterName'] = l[1] + l[2];
+            var ac = l[21].split('_');
+            r['reporterAddress'] = ac[0];
+            r['reporterPhone'] = ac[1];
 
-    r['smHerbal'] = l[19];
-    if (!functions.isEmpty(l[20])) {
-        var ab = l[20].split('_');
-        r['clinicanName'] = ab[0];
-        r['clinicanAddress'] = ab[1];
-        r['clinicanPincode'] = ab[2];
-        r['clinicanPhone'] = ab[3];
-        r['clinicanSpeciality'] = ab[4];
-        r['reporterName'] = l[1] + ' ' + l[2];
-        var ac = l[21].split('_');
-        r['reporterAddress'] = ac[0];
-        r['reporterPhone'] = ac[1];
-
-    } else {
-        r['reporterName'] = l[1] + l[2];
-        var ac = l[21].split('_');
-        r['reporterAddress'] = ac[0];
-        r['reporterPhone'] = ac[1];
-
+        }
+        r['reportDate'] = l[22];
+        if (l[23] == '0') {
+            r['healthProfessional'] = 'No';
+        } else {
+            r['healthProfessional'] = 'Yes';
+        }
+        r['occupation'] = l[24];
+        reports.create(r, function (err, newReport) {
+            console.log(newReport);
+            res.json({success: true, message: 'Data received!', data: r});
+        });
     }
-    r['reportDate'] = l[22];
-    if (l[23] == '0') {
-        r['healthProfessional'] = 'No';
-    } else {
-        r['healthProfessional'] = 'Yes';
-    }
-    r['occupation'] = l[24];
-    reports.create(r, function(err, newReport){
-        console.log(newReport);
-        res.json({success: true, message: 'Data received!', data: r});
-    });
+    res.json({success:true});
 });
 
 // router.post("/api/report/new", function(req, res){
