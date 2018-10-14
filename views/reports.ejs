@@ -23,25 +23,27 @@
             </ul>
             <div class="tab-content tab-space">
                 <div class="tab-pane active" id="link1">
-                    Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                    <br />
-                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                    <br/>
-                    <br/> This is very nice.
-                    <br />
-                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                    <br/>
-                    <br/> This is very nice.
-                    <br />
-                    <br /> Dramatically visualize customer directed convergence without revolutionary ROI. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                    <br/>
-                    <br/> This is very nice.
+                    <b>First Name: </b><%= report.fname %><br><br>
+                    <b>Last Name: </b><%= report.lname %><br><br>
+                    <b>Date of Event Start:</b><%= report.dstart %><br><br>
+                    <b>Date of Event End:</b><%= report.dend %><br><br>
+                    <b>Problem:</b><%= report.problem %><br><br>
+                    <b>Lab Tests:</b><%= report.ltest %><br><br>
+                    <b>History:</b><%= report.history %><br><br>
+                    <b>Event Aboted:</b><%= report.eventAboted %><br><br>
+                    <b>Event Reappeared:</b><%= report.eventReappeared %><br><br>
+                    <b>Death Date(if any):</b><%= report.deathDate %><br><br>
+                    <b>Other Information:</b><%= report.otherInfo %><br><br>
 
                 </div>
                 <div class="tab-pane" id="link2">
-                    Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                    <br />
-                    <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                    <b>Reporter Name: </b><%= report.reporterName %><br><br>
+                    <b>Reporter Occupation: </b><%= report.occupation %><br><br>
+                    <b>Reporter Address: </b><%= report.reporterAddress %><br><br>
+                    <b>Reporter Phone: </b><%= report.reporterPhone %><br><br>
+                    <b>Age/DOB:</b><%=report.adob%><br><br>
+                    <b>Sex:</b><%=report.sex%><br><br>
+                    <b>Weight:</b><%=report.weight%><br><br>
                 </div>
 
             </div>
@@ -53,26 +55,26 @@
         <div class="card-header card-header-tabs card-header-rose">
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
-                    <span class="nav-tabs-title">Outcomes:</span>
+                    <span class="nav-tabs-title"></span>
                     <ul class="nav nav-tabs" data-tabs="tabs">
                         <li class="nav-item">
                             <a class="nav-link active" href="#profile" data-toggle="tab">
-                                <i class="material-icons">space_bar</i>
-                                <div class="ripple-container">Outcomes</div>
+                                <i class="material-icons">space_bar</i>Outcome
+                                <div class="ripple-container"></div>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#messages" data-toggle="tab">
-                                <i class="material-icons">done</i>
+                                <i class="material-icons">pause_circle_outline</i>Medicine
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#settings" data-toggle="tab">
-                                <i class="material-icons">done_all</i> Completed
-                                <div class="ripple-container"></div>
-                            </a>
-                        </li>
+                        <!--<li class="nav-item">-->
+                            <!--<a class="nav-link" href="#settings" data-toggle="tab">-->
+                                <!--<i class="material-icons">done_all</i> Completed-->
+                                <!--<div class="ripple-container"></div>-->
+                            <!--</a>-->
+                        <!--</li>-->
                     </ul>
                 </div>
             </div>
@@ -80,13 +82,21 @@
         <div class="card-body">
             <div class="tab-content">
                 <div class="tab-pane active" id="profile">
-                    <p></p>
+                    <p style="font-family: Verdana;font-size: 18px;"><b><%= report.outcomes %></b></p>
                 </div>
                 <div class="tab-pane" id="messages">
-                    <p></p>
-                </div>
-                <div class="tab-pane" id="settings">
-                    <p></p>
+                    <p>
+                        <b>Medicine Name:</b><%=report.medName%><br><br>
+                        <b>Medicine Label Weight (in mgs):</b><%=report.medLabel%><br><br>
+                        <b>Medicine Manufacturer:</b><%=report.medManufacture%><br><br>
+                        <b>Medicine Dose:</b><%=report.medDose%><br><br>
+                        <b>Medicine Frequency:</b><%=report.medFreq%><br><br>
+                        <b>Medicine Route Used:</b><%=report.medRouteUsed%><br><br>
+                        <b>Diagnosis Use:</b><%=report.diagnosisUse%><br><br>
+                        <b>Lot:</b><%=report.lot%><br><br>
+                        <b>Exp Date:</b><%=report.expDate%><br><br>
+                        <b>Any Herbal/Oral Intake:</b><%=report.smHerbal%>
+                    </p>
                 </div>
             </div>
         </div>
@@ -102,13 +112,13 @@
                 </div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <span class="badge badge-pill badge-danger">Campaign Created</span>
+                        <span class="badge badge-pill badge-danger">Sex & Age/DOB</span>
                     </div>
                     <div class="timeline-body">
-                        <p>Industry Type: <%= campaign.industryType %></p>
+                        <p>Sex: <%= report.sex %></p>
                     </div>
                     <h6>
-                        <i class="ti-time"></i> <%= moment(campaign.dateCreated).format('ll') %>
+                        <i class="ti-time"></i>Age/DOB:  <%= report.adob %>
                     </h6>
                 </div>
             </li>
@@ -119,30 +129,29 @@
             <div class="col-lg-6 cards">
                 <div class="card card-pricing card-plain">
                     <div class="card-body">
-                        <h6 class="card-category">Company - <%= campaign.meant_for %></h6>
+                        <h6 class="card-category">Reporter Name - <%= report.reporterName %></h6>
                         <div class="card-icon icon-rose">
                             <i class="material-icons">home</i>
                         </div>
-                        <h3 class="card-title">Task Count - <%= campaign.tasks.length %></h3>
+                        <h3 class="card-title">Health Professional - <%= report.healthProfessional %></h3>
                         <p class="card-description">
-                            Industry Type - <%= campaign.industryType %>
+                            Occupation - <%= report.occupation %>
                         </p>
-                        <a href="/company" class="btn btn-rose btn-round">View Company Profile</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 cards">
                 <div class="card card-pricing card-raised">
                     <div class="card-body">
-                        <h6 class="card-category">Created By</h6>
+                        <h6 class="card-category">Clinican</h6>
                         <div class="card-icon">
                             <i class="material-icons">weekend</i>
                         </div>
-                        <h3 class="card-title"><%= campaign.created_by %></h3>
+                        <h3 class="card-title"><%= report.clinicanName %></h3>
                         <p class="card-description">
-                            I'm Admin!
+                            Clinican
                         </p>
-                        <a href="#pablo" class="btn btn-white btn-round"><%= moment(campaign.dateCreated).tz('Asia/Kolkata').format('lll')%></a>
+
                     </div>
                 </div>
             </div>

@@ -15,7 +15,10 @@ var flash                   = require("connect-flash");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var reportsRouter = require('./routes/reports');
+var reports = require('./models/reports');
 var mongoose = require("mongoose");
+var middleware = require("./middleware/index");
+var functions = require('./middleware/functions');
 mongoose.connect("mongodb://localhost:27017/mylan", { useNewUrlParser: true });
 
 var app = express();
@@ -175,6 +178,21 @@ app.post('/login', passport.authenticate("local",{
     failureRedirect: "/login",
     failureFlash: true
 }), (req, res) => {
+});
+
+app.get("/reports/download", middleware.isAdmin, function(req, res){
+    reports.find({}).lean().exec(function(err, foundReports){
+        if (err) {
+            console.log(err);
+            res.redirect("/reports");
+        } else {
+            if (functions.isEmpty(foundReports)) {
+                res.redirect("/reports");
+            } else {
+                res.xls('Reports.xls', foundReports);
+            }
+        }
+    });
 });
 
 app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
