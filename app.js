@@ -19,7 +19,7 @@ var reports = require('./models/reports');
 var mongoose = require("mongoose");
 var middleware = require("./middleware/index");
 var functions = require('./middleware/functions');
-mongoose.connect("mongodb://localhost:27017/mylan", { useNewUrlParser: true });
+mongoose.connect("mongodb://razor:imRAZOR20@ds131753.mlab.com:31753/mylanhack", { useNewUrlParser: true });
 
 var app = express();
 
